@@ -1,0 +1,43 @@
+Epilepsia infantil en YouTube en español: evaluación multidimensional de calidad, fiabilidad y transparencia · Edición multiusuario
+
+Inicio en Mac
+Descomprime el ZIP en una carpeta donde puedas guardar archivos. Con Python 3.9 o posterior instalado, haz doble clic en Iniciar.command. También puedes abrir Terminal en esa carpeta y ejecutar python3 servidor.py. Se abrirá http://127.0.0.1:8765 en el navegador. Mantén el servidor abierto durante el uso.
+
+Primer acceso
+Usuario Pepe, clave 1234. Pepe administra el estudio y firma sus propias valoraciones. Puedes cambiar la clave desde la sesión. Para crear una cuenta, entra en Administrador → Añadir investigador y registra nombre, usuario y clave. Cada investigador verá en Catálogo sus vídeos asignados como ordinario o dirimente. Al completar DISCERN, GQS y JAMA la ficha personal pasa a verde claro y el investigador puede consultar sus puntuaciones en Resultados y consenso. El administrador puede ver las valoraciones completas pendientes de validación. La comparación aparece para todos los investigadores cuando ambos evaluadores ordinarios completan sus tres tests.
+
+Trabajo desde varios equipos
+Todos deben conectarse a la misma instancia y base de datos. Para escuchar en la red del centro, el responsable puede ejecutar HOST=0.0.0.0 python3 servidor.py y facilitar a los investigadores la dirección del equipo y el puerto 8765. Para un despliegue con HTTPS, coloca el servicio detrás del proxy HTTPS del centro y configura HTTPS_COOKIE=1. El arranque predeterminado escucha únicamente en el propio equipo. Cambia la clave inicial antes de habilitar acceso por red.
+
+Datos anteriores
+Desde la versión HTML anterior, descarga la copia JSON del administrador. En la nueva aplicación, entra como Pepe y usa Administrador → Restaurar copia. La restauración sustituye los datos del estudio. Para activar investigadores importados sin cuenta, utiliza Añadir investigador e introduce exactamente su nombre anterior junto con su nuevo usuario y clave.
+
+Guardado y copias
+El servidor guarda por vídeo y por investigador las respuestas individuales, las observaciones, los motivos de no aplicabilidad, la fecha de guardado y el estado de borrador o finalizado. La base de datos estudio.sqlite3 aparece junto a servidor.py. El CSV sirve para el análisis de resultados y el JSON para trasladar el estudio. Para respaldar también las cuentas y los hashes de sus claves, detén el servidor y copia estudio.sqlite3.
+
+Actualización sobre una instalación existente
+Detén el servidor. Conserva estudio.sqlite3 en la carpeta equipo y copia allí los archivos de esta versión, incluidas la carpeta manuales y metadatos.py. Vuelve a ejecutar Iniciar.command. Se conservan las cuentas y los datos anteriores.
+
+VQI (solo Administrador)
+Cuando se incluye un vídeo se consulta en segundo plano la información técnica que YouTube haga disponible. La ficha indica la resolución, los fotogramas por segundo y la tasa de bits declarados para una misma pista de vídeo. La consulta requiere conexión. Puedes repetirla desde la ficha. La nitidez, los artefactos, el sonido y la sincronización requieren valoración. Los datos y las puntuaciones sin determinar aparecen como unknown. El total solo se calcula con los seis componentes puntuados. Las valoraciones VQI se incluyen en la copia del estudio y en el CSV de resultados.
+
+Lectura técnica ampliada en Mac
+Al abrir la ficha VQI se recuperan los datos disponibles del catálogo anterior y se muestra el progreso de la consulta. Para añadir una segunda vía de lectura, haz doble clic en Activar_lector_VQI.command en el Mac del servidor. Este instalador necesita Internet e instala yt-dlp en un entorno de Python dentro de la carpeta equipo. Si ya tienes yt-dlp disponible en el PATH del servidor, también se puede utilizar. El lector consulta los formatos publicados y no descarga el vídeo. En pistas combinadas se omite el bitrate si solo consta la tasa conjunta de audio y vídeo.
+
+Catálogo
+El administrador puede elegir fuente y temática en cada fila. Para modificar la duración, escribe min:seg o h:min:seg y pulsa Intro o sal del campo. Actualizar datos de YouTube vuelve a consultar las URL y actualiza las cifras en pantalla. Las visualizaciones y los me gusta conservan el último recuento exacto disponible y su fecha (visible al situar el puntero sobre la cifra). Si no existe un recuento se muestra Desconocido.
+
+En Catálogo, el administrador puede escribir las visualizaciones y los Me gusta. Un valor manual se conserva al consultar YouTube. Borra la cifra para recuperar el recuento automático.
+
+En Administrador → Asignación de vídeos, selecciona dos investigadores ordinarios y un dirimente para cada vídeo incluido y pulsa Guardar asignación. El resumen actualiza los recuentos por función y el total de cada investigador al cambiar cualquier desplegable, incluidos los cambios pendientes de guardar. Las asignaciones aparecen junto al título en el catálogo personal. La fila se muestra en verde claro cuando dos investigadores distintos han finalizado DISCERN, GQS y JAMA. Si ambos discrepan, interviene el dirimente en los ítems discrepantes.
+
+Irma y Laura disponen de cuentas de investigador con clave inicial 1234. En Administrador → Cambiar de usuario puedes simular su sesión y registrar valoraciones reales a su nombre. La misma pestaña permite volver a Pepe. Los botones de las escalas del catálogo muestran la puntuación personal al completar cada test.
+
+La validación administrativa se puede activar o retirar junto a la asignación del vídeo. Las parejas completas permanecen visibles en ambos estados.
+
+En Catálogo figura el estado de validación y cada test completado muestra su puntuación. Resultados y consenso permite a todos los usuarios comparar las puntuaciones de ambos evaluadores ordinarios de todos los vídeos con dos valoraciones completas, incluso fuera de su catálogo personal.
+
+Concordancia entre evaluadores
+Al completar los tres tests en ambas valoraciones se comparan los ítems de DISCERN, GQS y JAMA. DISCERN admite hasta 0,5 puntos de diferencia entre las medias de los ítems aplicables si todas las diferencias individuales son inferiores a 2. Una discrepancia de aplicabilidad requiere revisión. GQS exige la misma puntuación y JAMA exige acuerdo en cada criterio. Los investigadores pueden señalar una discrepancia clínica durante su valoración para solicitar la intervención del dirimente.
+
+Resultados y consenso reconoce los borradores con los tres tests completos, enumera las discrepancias y muestra la media de los dos evaluadores para cada escala completada por ambos.
